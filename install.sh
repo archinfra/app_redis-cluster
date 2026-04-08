@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 APP_NAME="redis-cluster"
-APP_VERSION="0.1.0"
+APP_VERSION="0.1.2"
 PACKAGE_PROFILE="integrated"
 WORKDIR="/tmp/${APP_NAME}-installer"
 PAYLOAD_ARCHIVE="${WORKDIR}/payload.tar.gz"
@@ -14,14 +14,14 @@ IMAGE_INDEX="${IMAGE_DIR}/image-index.tsv"
 ACTION="help"
 HELP_TOPIC="overview"
 RELEASE_NAME="redis-cluster"
-NAMESPACE="redis-system"
+NAMESPACE="aict"
 NODES="6"
 REPLICAS="1"
 REDIS_PASSWORD="Redis@Passw0rd"
 STORAGE_CLASS="nfs"
 STORAGE_SIZE="10Gi"
-ENABLE_METRICS="false"
-ENABLE_SERVICEMONITOR="false"
+ENABLE_METRICS="true"
+ENABLE_SERVICEMONITOR="true"
 SERVICE_MONITOR_NAMESPACE=""
 IMAGE_PULL_POLICY="IfNotPresent"
 WAIT_TIMEOUT="10m"
@@ -124,7 +124,7 @@ Examples:
   ${cmd} install --storage-class nfs --password 'Redis@123' -y
   ${cmd} install --enable-metrics --enable-servicemonitor --storage-class nfs -y
   ${cmd} install --registry harbor.example.com/kube4 --skip-image-prepare -y
-  ${cmd} status -n redis-system
+  ${cmd} status -n aict
   ${cmd} uninstall --delete-pvc -y
 EOF
 }
