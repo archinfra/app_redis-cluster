@@ -1050,7 +1050,8 @@ metrics:
     selector: {}
     ## @param metrics.serviceMonitor.labels ServiceMonitor extra labels
     ##
-    labels: {}
+    labels:
+      monitoring.archinfra.io/stack: default
     ## @param metrics.serviceMonitor.annotations ServiceMonitor annotations
     ##
     annotations: {}

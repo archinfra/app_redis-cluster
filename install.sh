@@ -477,6 +477,7 @@ install_release() {
     --set-string "global.defaultStorageClass=${STORAGE_CLASS}"
     --set "metrics.enabled=${ENABLE_METRICS}"
     --set "metrics.serviceMonitor.enabled=${ENABLE_SERVICEMONITOR}"
+    --set-string "metrics.serviceMonitor.labels.monitoring\\.archinfra\\.io/stack=default"
     --set-string "image.registry=$(image_registry_from_ref "${redis_image}")"
     --set-string "image.repository=$(image_repository_from_ref "${redis_image}")"
     --set-string "image.tag=$(image_tag_from_ref "${redis_image}")"
