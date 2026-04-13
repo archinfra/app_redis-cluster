@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 APP_NAME="redis-cluster"
-APP_VERSION="0.1.4"
+APP_VERSION="0.1.5"
 PACKAGE_PROFILE="integrated"
 WORKDIR="/tmp/${APP_NAME}-installer"
 PAYLOAD_ARCHIVE="${WORKDIR}/payload.tar.gz"

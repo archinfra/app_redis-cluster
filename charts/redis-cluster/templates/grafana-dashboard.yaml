@@ -1,4 +1,5 @@
 {{- if and .Values.metrics.enabled .Values.metrics.dashboards.enabled }}
+{{- $redisMetricsService := printf "%s-metrics" (include "common.names.fullname" .) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -45,7 +46,7 @@ data:
           },
           "targets": [
             {
-              "expr": "min(redis_up{service=\"{{ template \"common.names.fullname\" . }}-metrics\"})",
+              "expr": "min(redis_up{service=\"{{ $redisMetricsService }}\"})",
               "refId": "A"
             }
           ],
@@ -78,7 +79,7 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(redis_connected_clients{service=\"{{ template \"common.names.fullname\" . }}-metrics\"})",
+              "expr": "sum(redis_connected_clients{service=\"{{ $redisMetricsService }}\"})",
               "refId": "A"
             }
           ],
@@ -111,7 +112,7 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(redis_memory_used_bytes{service=\"{{ template \"common.names.fullname\" . }}-metrics\"})",
+              "expr": "sum(redis_memory_used_bytes{service=\"{{ $redisMetricsService }}\"})",
               "refId": "A"
             }
           ],
@@ -150,7 +151,7 @@ data:
           },
           "targets": [
             {
-              "expr": "(sum(rate(redis_keyspace_hits_total{service=\"{{ template \"common.names.fullname\" . }}-metrics\"}[5m])) / clamp_min(sum(rate(redis_keyspace_hits_total{service=\"{{ template \"common.names.fullname\" . }}-metrics\"}[5m])) + sum(rate(redis_keyspace_misses_total{service=\"{{ template \"common.names.fullname\" . }}-metrics\"}[5m])), 1)) * 100",
+              "expr": "(sum(rate(redis_keyspace_hits_total{service=\"{{ $redisMetricsService }}\"}[5m])) / clamp_min(sum(rate(redis_keyspace_hits_total{service=\"{{ $redisMetricsService }}\"}[5m])) + sum(rate(redis_keyspace_misses_total{service=\"{{ $redisMetricsService }}\"}[5m])), 1)) * 100",
               "refId": "A"
             }
           ],
@@ -176,7 +177,7 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(rate(redis_commands_processed_total{service=\"{{ template \"common.names.fullname\" . }}-metrics\"}[5m]))",
+              "expr": "sum(rate(redis_commands_processed_total{service=\"{{ $redisMetricsService }}\"}[5m]))",
               "legendFormat": "commands/s",
               "refId": "A"
             }
@@ -197,12 +198,12 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(redis_memory_used_bytes{service=\"{{ template \"common.names.fullname\" . }}-metrics\"})",
+              "expr": "sum(redis_memory_used_bytes{service=\"{{ $redisMetricsService }}\"})",
               "legendFormat": "used",
               "refId": "A"
             },
             {
-              "expr": "sum(redis_memory_max_bytes{service=\"{{ template \"common.names.fullname\" . }}-metrics\"})",
+              "expr": "sum(redis_memory_max_bytes{service=\"{{ $redisMetricsService }}\"})",
               "legendFormat": "max",
               "refId": "B"
             }
