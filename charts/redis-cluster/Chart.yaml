@@ -4,13 +4,13 @@ annotations:
     - name: os-shell
       image: sealos.hub:5000/kube4/os-shell:12-debian-12-r51
     - name: redis-cluster
-      image: sealos.hub:5000/kube4/redis-cluster:8.2.1-debian-12-r0
+      image: sealos.hub:5000/kube4/redis-cluster:8.2.7-debian-12-r0
     - name: redis-exporter
       image: sealos.hub:5000/kube4/redis-exporter:1.76.0-debian-12-r0
   licenses: Apache-2.0
   tanzuCategory: service
 apiVersion: v2
-appVersion: 8.2.1
+appVersion: 8.2.7
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
@@ -32,4 +32,4 @@ maintainers:
 name: redis-cluster
 sources:
 - https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
-version: 13.0.4
+version: 13.0.5
